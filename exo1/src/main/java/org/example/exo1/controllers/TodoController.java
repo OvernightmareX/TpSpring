@@ -26,7 +26,7 @@ public class TodoController {
     @GetMapping
     public String getAllTodos(Model model) {
         model.addAttribute("allTodos", todoService.getAllTodos());
-        return "todoPage";
+        return "allTodoPage";
     }
 
     @GetMapping("/{id}")

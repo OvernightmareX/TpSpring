@@ -2,16 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Affichage des TODOs</title>
+    <title>Affichage d'un TODO</title>
 </head>
 <body>
 <h1 th:if="${todo != null}"><span th:text="${todo}"></span></h1>
-
-<div th:if="${allTodos != null && !allTodos.isEmpty() && todo == null}">
-    <h1>Liste des TODOs</h1>
-    <ul>
-        <li th:each="t : ${allTodos}"><span th:text="${t}"></span> </li>
-    </ul>
-</div>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <body>
 <h1 th:if="${todo != null}"><span th:text="${todo}"></span></h1>
 
-<div th:if="${allTodos != null && !allTodos.isEmpty() && todo != null}">
+<div th:if="${allTodos != null && !allTodos.isEmpty() && todo == null}">
     <h1>Liste des TODOs</h1>
     <ul>
         <li th:each="t : ${allTodos}"><span th:text="${t}"></span> </li>

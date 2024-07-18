@@ -12,9 +12,9 @@ public class TodoService {
 
     public TodoService() {
         todos = new ArrayList<>();
-        todos.add(new Todo("todo1", "todo1 description", true));
-        todos.add(new Todo("todo2", "todo2 description", false));
-        todos.add(new Todo("todo3", "todo3 description", true));
+        todos.add(new Todo("todo0", "todo0 description", true));
+        todos.add(new Todo("todo1", "todo1 description", false));
+        todos.add(new Todo("todo2", "todo2 description", true));
     }
 
     public List<Todo> getAllTodos(){

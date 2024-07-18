@@ -5,7 +5,7 @@
     <title>Affichage des TODOs</title>
 </head>
 <body>
-  <div th:if="${allTodos != null && !allTodos.isEmpty() && todo == null}">
+  <div th:if="${allTodos != null && !allTodos.isEmpty()}">
     <h1>Liste des TODOs</h1>
     <ul>
       <li th:each="t : ${allTodos}"><span th:text="${t}"></span> </li>

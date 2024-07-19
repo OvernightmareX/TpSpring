@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des produits filtré</title>
+    <span th:replace="~{home :: stylesImports}"></span>
+</head>
+<body class="container">
+<nav>
+    <a th:href="@{/product}">Accueil</a>
+</nav>
+<h1>Liste des produits filtré</h1>
+
+<table class="table table-dark table-striped border border-secondary">
+    <thead>
+    <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Category</th>
+        <th scope="col">Prix</th>
+        <th scope="col">Detail</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p : ${filteredList}">
+        <td th:text="${p.getName()}" class="align-middle"></td>
+        <td th:text="${p.getCategory().name()}" class="align-middle"></td>
+        <td th:text="${p.getPrice()}" class="align-middle"></td>
+        <td class="align-middle"><a th:href="@{/product/detail/{uuid}(uuid = ${p.getId()})}" class="btn btn-outline-primary"><i class="bi bi-eye"></i> Détails</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -44,6 +44,7 @@ public class TodoController {
     @GetMapping("/json/{id}")
     @ResponseBody
     public Todo getTodoById(@PathVariable String id){
+        String test = String.valueOf(true);
         return todoService.getTodoById(Integer.parseInt(id));
     }
 }

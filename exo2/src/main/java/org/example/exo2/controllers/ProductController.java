@@ -1,5 +1,6 @@
 package org.example.exo2.controllers;
 
+import org.example.exo2.entities.Product;
 import org.example.exo2.services.ProductService;
 import org.example.exo2.utils.ProductCategory;
 import org.springframework.stereotype.Controller;
@@ -20,13 +21,15 @@ public class ProductController {
     }
 
     @GetMapping
-    public String homePage(){
+    public String homePage(Model model){
+        model.addAttribute("product", new Product());
         return "home";
     }
 
     @GetMapping("/list")
     public String listPage(Model model){
         model.addAttribute("allProduct", monService.getAllProduct());
+        model.addAttribute("isFilter", false);
         return "list";
     }
 
@@ -37,7 +40,7 @@ public class ProductController {
     }
 
     @GetMapping("/filter")
-    public String detailPageByName(Model model, @RequestParam(value = "category", required = false) String category, @RequestParam(value = "price", required = false) Optional<Double> price){
+    public String getDetailPageByName(Model model, @RequestParam(value = "category", required = false) String category, @RequestParam(value = "price", required = false) Optional<Double> price){
         ProductCategory productCategory = null;
         double productPrice = 0;
 
@@ -47,8 +50,17 @@ public class ProductController {
         if(price.isPresent())
             productPrice = price.get();
 
-        model.addAttribute("filteredList", monService.getProductByCategoryAndMaxPrice(productCategory, productPrice));
-        return "filterPage";
+        model.addAttribute("allProduct", monService.getProductByCategoryAndMaxPrice(productCategory, productPrice));
+        return "list";
+    }
+
+    @PostMapping("/filter")
+    public String submitDetailPageByName(@ModelAttribute Product product, Model model){
+        model.addAttribute("category", product.getCategory());
+        model.addAttribute("price", product.getPrice());
+        model.addAttribute("allProduct", monService.getProductByCategoryAndMaxPrice(product.getCategory(), product.getPrice()));
+        model.addAttribute("isFilter", true);
+        return "list";
     }
 
 }

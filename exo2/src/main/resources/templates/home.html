@@ -14,20 +14,21 @@
         <a th:href="@{/product/list}">Liste des produits</a>
     </nav>
     <hr>
-<!--    <h1>Recherche de produit par categorie et prix : </h1>-->
-<!--    <form class="text-bg-dark rounded p-3" th:action="@{${action}}" method="post" enctype="multipart/form-data">-->
-<!--        <div class="input-group mb-3">-->
-<!--            <input class="form-control" type="text" aria-label="name" placeholder="Nom" id="name" name="name" required>-->
-<!--        </div>-->
-<!--        <div class="input-group mb-3">-->
-<!--            <input class="form-control" type="text" aria-label="phoneNumber" placeholder="Numéro de téléphone" id="phoneNumber" name="phoneNumber" required>-->
-<!--        </div>-->
-<!--        <div class="input-group mb-3">-->
-<!--            <input class="form-control" type="file" aria-label="image" id="image" name="image" required>-->
-<!--        </div>-->
-<!--        <hr>-->
-<!--        <button class="btn btn-outline-light"><i class="bi bi-plus-square"></i> Ajouter</button>-->
-<!--    </form>-->
-<!--    <a th:href="@{/product/list}"></a>-->
+    <h1>Recherche de produit par categorie et prix : </h1>
+    <form class="text-bg-dark rounded p-3" th:action="@{/product/filter}" th:object="${product}" method="post" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+            <select class="form-control" aria-label="category" id="category" th:field="*{category}" required>
+                    <option th:value="'FOOD'" th:text="FOOD"></option>
+                    <option th:value="'ELECTRONIC'" th:text="ELECTRONIC"></option>
+                    <option th:value="'FASHION'" th:text="FASHION"></option>
+            </select>
+        </div>
+        <div class="input-group mb-3">
+            <input class="form-control" type="number" aria-label="price" placeholder="Prix max" id="price" th:field="*{price}" required>
+        </div>
+        <hr>
+        <button class="btn btn-outline-light"><i class="bi bi-plus-square"></i> Rechercher</button>
+    </form>
+    <a th:href="@{/product/list}"></a>
 </body>
 </html>

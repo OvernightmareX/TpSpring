@@ -18,9 +18,8 @@
     <form class="text-bg-dark rounded p-3" th:action="@{/product/filter}" th:object="${product}" method="post" enctype="multipart/form-data">
         <div class="input-group mb-3">
             <select class="form-control" aria-label="category" id="category" th:field="*{category}" required>
-                    <option th:value="'FOOD'" th:text="FOOD"></option>
-                    <option th:value="'ELECTRONIC'" th:text="ELECTRONIC"></option>
-                    <option th:value="'FASHION'" th:text="FASHION"></option>
+                <option th:each="c : ${productCategories}" th:value="${c}" th:text="${c.toString()}"></option>
+
             </select>
         </div>
         <div class="input-group mb-3">

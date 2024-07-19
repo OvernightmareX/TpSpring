@@ -42,22 +42,16 @@ public class ProductController {
 
     @GetMapping("/detail/{uuid}")
     public String detailPage(Model model, @PathVariable("uuid") UUID uuid){
-        model.addAttribute("entity", monService.getProductByUUID(uuid));
+        model.addAttribute("product", monService.getProductByUUID(uuid));
         return "detail";
     }
 
     @GetMapping("/filter")
-    public String getDetailPageByCategoryAndPrice(Model model, @RequestParam(value = "category", required = false) String category, @RequestParam(value = "price", required = false) Optional<Double> price){
-        ProductCategory productCategory = null;
-        double productPrice = 0;
-
-        if(category != null)
-           productCategory = ProductCategory.valueOf(category.toUpperCase());
-
-        if(price.isPresent())
-            productPrice = price.get();
-
-        model.addAttribute("allProduct", monService.getProductByCategoryAndMaxPrice(productCategory, productPrice));
+    public String getDetailPageByCategoryAndPrice(Model model,
+                                                  @RequestParam(value = "category", required = false) String category,
+                                                  @RequestParam(value = "price", required = false) double price) {
+        ProductCategory productCategory = category != null ? ProductCategory.valueOf(category.toUpperCase()) : null;
+        model.addAttribute("allProduct", monService.getProductByCategoryAndMaxPrice(productCategory, price));
         return "list";
     }
 

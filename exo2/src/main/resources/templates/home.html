@@ -15,11 +15,10 @@
     </nav>
     <hr>
     <h1>Recherche de produit par categorie et prix : </h1>
-    <form class="text-bg-dark rounded p-3" th:action="@{/product/filter}" th:object="${product}" method="post" enctype="multipart/form-data">
+    <form class="text-bg-dark rounded p-3" th:action="@{/product/filter}" th:object="${product}" method="post">
         <div class="input-group mb-3">
             <select class="form-control" aria-label="category" id="category" th:field="*{category}" required>
                 <option th:each="c : ${productCategories}" th:value="${c}" th:text="${c.toString()}"></option>
-
             </select>
         </div>
         <div class="input-group mb-3">
@@ -28,6 +27,5 @@
         <hr>
         <button class="btn btn-outline-light"><i class="bi bi-plus-square"></i> Rechercher</button>
     </form>
-    <a th:href="@{/product/list}"></a>
 </body>
 </html>

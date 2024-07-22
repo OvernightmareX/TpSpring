@@ -4,11 +4,12 @@ import org.example.exo3.entities.Student;
 import org.example.exo3.services.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Stream;
 
 @Controller
 public class StudentController {
@@ -52,7 +53,6 @@ public class StudentController {
 
     @PostMapping(value = {"/add"})
     public String submitStudent(@ModelAttribute Student student, Model model){
-        System.out.println(student.getId());
         if(student.getId() != null)
             studentService.updateStudent(student);
         else

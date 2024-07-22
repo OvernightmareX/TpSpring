@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des étudiants</title>
+    <span th:replace="~{home :: stylesImports}"></span>
+</head>
+<body class="container">
+    <nav>
+        <a th:href="@{/}">Accueil</a>
+    </nav>
+
+    <h1 th:if="${isFilter}">Liste des étudiants recherché</h1>
+    <h1 th:unless="${isFilter}">Liste de tout les étudiants</h1>
+
+    <h3 th:if="${allStudent == null || allStudent.isEmpty()}">Aucun résultat trouvé</h3>
+    <table th:if="${allStudent != null && !allStudent.isEmpty()}" class="table table-dark table-striped border border-secondary">
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">Age</th>
+            <th scope="col">Email</th>
+            <th scope="col">Detail</th>
+            <th scope="col">Suppression</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="p : ${allStudent}">
+                <td th:text="${p.getLastname()}" class="align-middle"></td>
+                <td th:text="${p.getFirstname()}" class="align-middle"></td>
+                <td th:text="${p.getAge()}" class="align-middle"></td>
+                <td th:text="${p.getEmail()}" class="align-middle"></td>
+                <td class="align-middle"><a th:href="@{/detail(uuid = ${p.getId()})}" class="btn btn-outline-primary"><i class="bi bi-eye"></i> Voir détails</a></td>
+                <td class="align-middle"><a th:href="@{/delete(uuid = ${p.getId()})}" class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

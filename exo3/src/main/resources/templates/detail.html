@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+    <span th:replace="~{home :: stylesImports}"></span>
+</head>
+<body class="container" >
+    <h1>Detail de l'étudiant</h1>
+    <p>Nom : <span th:text="${student.getLastname()}"></span></p>
+    <p>Prénom : <span th:text="${student.getFirstname()}"></span></p>
+    <p>Age : <span th:text="${student.getAge()}"></span></p>
+    <p>Email : <span th:text="${student.getEmail()}"></span></p>
+    <a class="btn btn-outline-success" th:href="@{/update(uuid = ${student.getId()})}"><i class="bi bi-pencil-square"></i> Modifier l'étudiant</a>
+    <nav>
+        <a th:href="@{/}">Accueil</a>
+        <a th:href="@{/list}">Retour sur la liste</a>
+    </nav>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription</title>
+    <span th:replace="~{home :: stylesImports}"></span>
+</head>
+<body class="container">
+    <nav>
+        <a th:href="@{/}">Retour</a>
+    </nav>
+    <h1>Inscription d'un étudiant</h1>
+    <form class="text-bg-dark rounded p-3" th:action="@{/add}" th:object="${student}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div class="input-group mb-3">
+            <input class="form-control" type="text" aria-label="prenom" placeholder="prenom" id="prenom" th:field="*{firstname}" required>
+        </div>
+        <div class="input-group mb-3">
+            <input class="form-control" type="text" aria-label="nom" placeholder="nom" id="nom" th:field="*{lastname}" required>
+        </div>
+        <div class="input-group mb-3">
+            <input class="form-control" type="number" aria-label="age" placeholder="age" id="age" th:field="*{age}" required>
+        </div>
+        <div class="input-group mb-3">
+            <input class="form-control" type="email" aria-label="email" placeholder="email" id="email" th:field="*{email}" required>
+        </div>
+        <hr>
+        <button th:if="${student.getId() == null}" class="btn btn-outline-light"><i class="bi bi-plus-square"></i> Ajouter</button>
+        <button th:if="${student.getId() != null}" class="btn btn-outline-light"><i class="bi bi-plus-square"></i> Modifier</button>
+    </form>
+</body>
+</html>

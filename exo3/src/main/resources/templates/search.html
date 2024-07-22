@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Rechercher un étudiant</title>
+    <span th:replace="~{home :: stylesImports}"></span>
+</head>
+<body>
+<h1>Recherche d'un étudiant par son nom (nom ou prénom) : </h1>
+<form class="text-bg-dark rounded p-3" th:action="@{/search}" method="post">
+    <div class="input-group mb-3">
+        <input class="form-control" type="text" aria-label="name" placeholder="name" name="name" id="name" required>
+    </div>
+    <hr>
+    <button class="btn btn-outline-light"><i class="bi bi-plus-square"></i> Rechercher</button>
+</form>
+</body>
+</html>

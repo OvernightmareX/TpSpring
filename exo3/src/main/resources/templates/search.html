@@ -5,8 +5,12 @@
     <title>Rechercher un étudiant</title>
     <span th:replace="~{home :: stylesImports}"></span>
 </head>
-<body>
-<h1>Recherche d'un étudiant par son nom (nom ou prénom) : </h1>
+<body class="container">
+<nav>
+    <a th:href="@{/}">Accueil</a>
+</nav>
+<hr>
+<h3>Recherche d'un étudiant par son nom (nom ou prénom) : </h3>
 <form class="text-bg-dark rounded p-3" th:action="@{/search}" method="post">
     <div class="input-group mb-3">
         <input class="form-control" type="text" aria-label="name" placeholder="name" name="name" id="name" required>

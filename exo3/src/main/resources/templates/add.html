@@ -10,6 +10,7 @@
         <a th:href="@{/}">Retour</a>
     </nav>
     <h1>Inscription d'un étudiant</h1>
+    <hr>
     <form class="text-bg-dark rounded p-3" th:action="@{/add}" th:object="${student}" method="post">
         <input type="hidden" th:field="*{id}" />
         <div class="input-group mb-3">

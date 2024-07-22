@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class StudentService {
+public class StudentService implements IStudentService{
     private final List<Student> studentList;
 
     public StudentService() {
-        studentList = new ArrayList<Student>();
+        studentList = new ArrayList<>();
 
         studentList.add(Student.builder().id(UUID.randomUUID()).lastname("Twix").firstname("Gauche").age(18).email("twixG@twitwi.choco").build());
         studentList.add(Student.builder().id(UUID.randomUUID()).lastname("Twix").firstname("Droit").age(19).email("twixD@twitwi.choco").build());
@@ -27,7 +27,7 @@ public class StudentService {
     }
 
     public List<Student> getStudentsByName(String name) {
-        List<Student> students = new ArrayList<Student>();
+        List<Student> students = new ArrayList<>();
         students.addAll(studentList.stream().filter(student -> student.getFirstname().toUpperCase().startsWith(name.toUpperCase())).toList());
         students.addAll(studentList.stream().filter(student -> student.getLastname().toUpperCase().startsWith(name.toUpperCase())).toList());
         return students;

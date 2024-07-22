@@ -1,6 +1,7 @@
 package org.example.exo3.controllers;
 
 import org.example.exo3.entities.Student;
+import org.example.exo3.services.IStudentService;
 import org.example.exo3.services.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +15,10 @@ import java.util.UUID;
 @Controller
 public class StudentController {
 
-    private StudentService studentService;
+    private IStudentService studentService;
 
-    public StudentController(final StudentService monService) {
-        this.studentService = monService;
+    public StudentController(final IStudentService studentService) {
+        this.studentService = studentService;
     }
 
     @GetMapping

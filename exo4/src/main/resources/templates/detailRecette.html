@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+    <span th:replace="~{home :: stylesImports}"></span>
+</head>
+<body class="container" >
+    <h1>Detail de la recette</h1>
+    <hr>
+    <p>ID : <span th:text="${recette.getId()}"></span></p>
+    <p>Nom : <span th:text="${recette.getNom()}"></span></p>
+    <p>Ingredients : <span th:text="${recette.getIngredients()}"></span></p>
+    <p>Instructions : <span th:text="${recette.getInstructions()}"></span></p>
+    <p>Categorie : <span th:text="${recette.getCategorie().getNom()}"></span></p>
+    <a class="btn btn-outline-success" th:href="@{/recette/update(uuid = ${recette.getId()})}"><i class="bi bi-pencil-square"></i> Modifier la recette</a>
+    <nav>
+        <a th:href="@{/recette/list}">Retour sur la liste</a>
+    </nav>
+</body>
+</html>

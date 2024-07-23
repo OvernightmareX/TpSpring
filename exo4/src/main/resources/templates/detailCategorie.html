@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+    <span th:replace="~{home :: stylesImports}"></span>
+</head>
+<body class="container" >
+<h1>Detail de la categorie</h1>
+<hr>
+<p>ID : <span th:text="${categorie.getId()}"></span></p>
+<p>Nom : <span th:text="${categorie.getNom()}"></span></p>
+<p>Description : <span th:text="${categorie.getDescription()}"></span></p>
+<a class="btn btn-outline-success" th:href="@{/categorie/update(uuid = ${categorie.getId()})}"><i class="bi bi-pencil-square"></i> Modifier la categorie</a>
+<nav>
+    <a th:href="@{/categorie/list}">Retour sur la liste</a>
+</nav>
+</body>
+</html>

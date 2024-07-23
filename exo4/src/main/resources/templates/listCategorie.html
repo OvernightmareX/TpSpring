@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des categories</title>
+    <span th:replace="~{home :: stylesImports}"></span>
+</head>
+<body class="container">
+<nav>
+    <a th:href="@{/}">Accueil</a>
+</nav>
+<hr>
+<h1 th:if="${isFilter}">Liste des categories recherchés</h1>
+<h1 th:unless="${isFilter}">Liste de toutes les categories</h1>
+
+<h3 th:if="${allCategorie == null || allCategorie.isEmpty()}">Aucun résultat trouvé</h3>
+<table th:if="${allCategorie != null && !allCategorie.isEmpty()}" class="table table-dark table-striped border border-secondary">
+    <thead>
+    <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Description</th>
+        <th scope="col">Detail</th>
+        <th scope="col">Suppression</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p : ${allCategorie}">
+        <td th:text="${p.getNom()}" class="align-middle"></td>
+        <td th:text="${p.getDescription()}" class="align-middle"></td>
+        <td class="align-middle"><a th:href="@{/categorie/detail(uuid = ${p.getId()})}" class="btn btn-outline-primary"><i class="bi bi-eye"></i> Voir détails</a></td>
+        <td class="align-middle"><a th:href="@{/categorie/delete(uuid = ${p.getId()})}" class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></a></td>
+    </tr>
+    </tbody>
+</table>
+<a class="btn btn-outline-primary" th:href="@{/categorie/add}"><i class="bi bi-plus-square"></i> Ajouter</a>
+</body>
+</html>

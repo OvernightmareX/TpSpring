@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Enregistrement</title>
+    <span th:replace="~{home :: stylesImports}"></span>
+</head>
+<body class="container">
+<nav>
+    <a th:href="@{/categorie/list}">Retour</a>
+</nav>
+<h1>Enregistrer une categorie</h1>
+<hr>
+<form class="text-bg-dark rounded p-3" th:action="@{/categorie/add}" th:object="${categorie}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <div class="input-group mb-3">
+        <input class="form-control" type="text" aria-label="nom" placeholder="nom" id="nom" th:field="*{nom}" required>
+        <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+    </div>
+    <div class="input-group mb-3">
+        <input class="form-control" type="text" aria-label="description" placeholder="description" id="description" th:field="*{description}" required>
+        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+    </div>
+    <hr>
+    <button th:if="${categorie.getId() == null}" class="btn btn-outline-light"><i class="bi bi-plus-square"></i> Ajouter</button>
+    <button th:if="${categorie.getId() != null}" class="btn btn-outline-light"><i class="bi bi-plus-square"></i> Modifier</button>
+</form>
+</body>
+</html>

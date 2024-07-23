@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Enregistrement</title>
+    <span th:replace="~{home :: stylesImports}"></span>
+</head>
+<body class="container">
+    <nav>
+        <a th:href="@{/recette/list}">Retour</a>
+    </nav>
+    <h1>Enregistrer une recette</h1>
+    <hr>
+    <form class="text-bg-dark rounded p-3" th:action="@{/recette/add}" th:object="${recette}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div class="input-group mb-3">
+            <input class="form-control" type="text" aria-label="nom" placeholder="nom" id="nom" th:field="*{nom}" required>
+            <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+        </div>
+        <div class="input-group mb-3">
+            <input class="form-control" type="text" aria-label="ingredients" placeholder="ingredients" id="ingredients" th:field="*{ingredients}" required>
+            <span th:if="${#fields.hasErrors('ingredients')}" th:errors="*{ingredients}"></span>
+        </div>
+        <div class="input-group mb-3">
+            <input class="form-control" type="text" aria-label="instructions" placeholder="instructions" id="instructions" th:field="*{instructions}" required>
+            <span th:if="${#fields.hasErrors('instructions')}" th:errors="*{instructions}"></span>
+        </div>
+
+        <div class="input-group mb-3">
+            <label for="categorie">
+                <select name="categorie" id="categorie" th:field="*{categorieID}">
+                    <option th:each="c : ${categories}" th:value="${c.getId()}" th:text="${c.getNom()}">
+                    </option>
+                </select>
+            </label>
+            <span th:if="${#fields.hasErrors('categorie')}" th:errors="*{categorie}"></span>
+        </div>
+
+        <hr>
+        <button th:if="${recette.getId() == null}" class="btn btn-outline-light"><i class="bi bi-plus-square"></i> Ajouter</button>
+        <button th:if="${recette.getId() != null}" class="btn btn-outline-light"><i class="bi bi-plus-square"></i> Modifier</button>
+    </form>
+</body>
+</html>

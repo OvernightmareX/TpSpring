@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Service
 public class CategorieService implements ICategoryService {
-    List<Categorie> categories;
+    private List<Categorie> categories;
 
     public CategorieService() {
         categories = new ArrayList<Categorie>();
@@ -26,6 +26,10 @@ public class CategorieService implements ICategoryService {
                 .build());
     }
 
+    public CategorieService(List<Categorie> categories) {
+        this.categories = categories;
+    }
+
     @Override
     public List<Categorie> getAllCategorie() {
         return categories;
@@ -33,11 +37,17 @@ public class CategorieService implements ICategoryService {
 
     @Override
     public Categorie getCategorieByUUID(UUID uuid) {
+        if(uuid == null)
+            throw new NullPointerException("Null UUID");
+
         return categories.stream().filter(c -> c.getId().equals(uuid)).findFirst().orElse(null);
     }
 
     @Override
     public Categorie getCategorieByName(String nom) {
+        if(nom == null || nom.isEmpty())
+            return null;
+
         return categories.stream().filter(c -> c.getNom().equals(nom)).findFirst().orElse(null);
     }
 
@@ -54,6 +64,9 @@ public class CategorieService implements ICategoryService {
 
     @Override
     public void updateCategorie(Categorie categorie) {
+        if(categorie == null)
+            throw new NullPointerException("Null Categorie");
+
         Categorie categorieToUpdate = getCategorieByUUID(categorie.getId());
         categorieToUpdate.setNom(categorie.getNom());
         categorieToUpdate.setDescription(categorie.getDescription());

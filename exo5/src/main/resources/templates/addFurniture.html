@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajout d'un meuble</title>
+    <span th:replace="~{listFurniture :: stylesImports}"></span>
+</head>
+<body>
+<main class="container">
+    <h1>Ajouter un meuble</h1>
+    <hr>
+    <form class="text-bg-dark rounded p-3" th:action="@{/furniture/add}" th:object="${furniture}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div class="input-group mb-3">
+            <label for="name">Nom du meuble : </label>
+            <input class="form-control" type="text" placeholder="name" id="name" th:field="*{name}" required>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        </div>
+        <div class="input-group mb-3">
+            <label for="description">Description : </label>
+            <textarea class="form-control" placeholder="description" id="description" th:field="*{description}" required></textarea>
+            <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+        </div>
+        <div class="input-group mb-3">
+            <label for="price">Prix : </label>
+            <input class="form-control" type="number" placeholder="price" id="price" th:field="*{price}" required>
+            <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+        </div>
+        <div class="input-group mb-3">
+            <label for="stock">Quantité en stock : </label>
+            <input class="form-control" type="number" placeholder="stock" id="stock" th:field="*{stock}" required>
+            <span th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span>
+        </div>
+        <hr>
+        <button class="btn btn-outline-light"><i class="bi bi-plus-square"></i> Ajouter</button>
+    </form>
+</main>
+</body>
+</html>

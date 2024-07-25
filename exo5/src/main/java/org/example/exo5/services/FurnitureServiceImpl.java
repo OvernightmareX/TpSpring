@@ -1,6 +1,5 @@
 package org.example.exo5.services;
 
-import org.example.exo5.entities.CartItem;
 import org.example.exo5.entities.Furniture;
 import org.example.exo5.repositories.FurnitureRepository;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ public class FurnitureServiceImpl implements FurnitureService{
     }
 
     public List<Furniture> getAllFurniture() {
-        return furnitureRepository.findAll();
+        return furnitureRepository.findAllByOrderByNameAsc();
     }
 
     public Furniture getFurnitureById(long id) {

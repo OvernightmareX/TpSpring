@@ -1,7 +1,6 @@
 package org.example.exo5.services;
 
 import org.example.exo5.entities.CartItem;
-import org.example.exo5.entities.Furniture;
 
 import java.util.List;
 

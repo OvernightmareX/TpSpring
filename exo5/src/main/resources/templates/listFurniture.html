@@ -20,7 +20,7 @@
                     <th scope="col">Description</th>
                     <th scope="col">Price</th>
                     <th scope="col">Stock</th>
-                    <th scope="col"></th>
+                    <th scope="col">Quantité</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
@@ -33,7 +33,7 @@
                     <td th:text="${f.getStock()}" class="align-middle"></td>
                     <form th:action="@{/cart/add}" method="post">
                         <td class="align-middle">
-                            <input aria-label="quantity" type="number" min="0" th:max="${f.getStock()}" name="quantity" placeholder="quantity" id="quantity">
+                            <input aria-label="quantity" type="number" value="0" min="0" th:max="${f.getStock()}" name="quantity" placeholder="quantity" id="quantity">
                             <input type="hidden" name="id" th:value="${f.getId()}">
                             <button type="submit" class="btn btn-outline-primary">
                                 <i class="bi bi-eye"></i> Ajouter au panier

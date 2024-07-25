@@ -40,7 +40,7 @@ public class FurnitureController {
     }
 
     @GetMapping("/delete")
-    public String deleteFurniture(@RequestParam(name = "id") long id, Model model) {
+    public String deleteFurniture(@RequestParam(name = "id") long id){
         furnitureService.deleteFurniture(id);
         return "redirect:/furniture";
     }

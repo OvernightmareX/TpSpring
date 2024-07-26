@@ -13,38 +13,38 @@
         <h1>Liste des meubles</h1>
         <hr>
         <h3 th:if="${furnitures == null || furnitures.isEmpty()}">Aucun meubles !</h3>
-            <table th:if="${furnitures != null && !furnitures.isEmpty()}" class="table table-dark table-striped border border-secondary">
-                <thead>
-                <tr>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Quantité</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="f : ${furnitures}">
-                    <td th:text="${f.getName()}" class="align-middle"></td>
-                    <td th:text="${f.getDescription()}" class="align-middle"></td>
-                    <td th:text="${f.getPrice()}" class="align-middle"></td>
-                    <td th:text="${f.getStock()}" class="align-middle"></td>
-                    <form th:action="@{/cart/add}" method="post">
-                        <td class="align-middle">
-                            <input aria-label="quantity" type="number" value="0" min="0" th:max="${f.getStock()}" name="quantity" placeholder="quantity" id="quantity">
-                            <input type="hidden" name="id" th:value="${f.getId()}">
-                            <button type="submit" class="btn btn-outline-primary">
-                                <i class="bi bi-eye"></i> Ajouter au panier
-                            </button>
-                        </td>
-                    </form>
-                    <td class="align-middle"><a th:href="@{/furniture/update(id = ${f.getId()})}" class="btn btn-outline-success"><i class="bi bi-eye"></i> Modifier meuble</a></td>
-                    <td class="align-middle"><a th:href="@{/furniture/delete(id = ${f.getId()})}" class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></a></td>
-                </tr>
-                </tbody>
-            </table>
+        <table th:if="${furnitures != null && !furnitures.isEmpty()}" class="table table-dark table-striped border border-secondary">
+            <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Quantité</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="f : ${furnitures}">
+                <td th:text="${f.getName()}" class="align-middle"></td>
+                <td th:text="${f.getDescription()}" class="align-middle"></td>
+                <td th:text="${f.getPrice()}" class="align-middle"></td>
+                <td th:text="${f.getStock()}" class="align-middle"></td>
+                <form th:action="@{/cart/add}" method="post">
+                    <td class="align-middle">
+                        <input aria-label="quantity" type="number" value="0" min="0" th:max="${f.getStock()}" name="quantity" placeholder="quantity" id="quantity">
+                        <input type="hidden" name="id" th:value="${f.getId()}">
+                        <button type="submit" class="btn btn-outline-primary">
+                            <i class="bi bi-eye"></i> Ajouter au panier
+                        </button>
+                    </td>
+                </form>
+                <td class="align-middle"><a th:href="@{/furniture/update(id = ${f.getId()})}" class="btn btn-outline-success"><i class="bi bi-eye"></i> Modifier meuble</a></td>
+                <td class="align-middle"><a th:href="@{/furniture/delete(id = ${f.getId()})}" class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></a></td>
+            </tr>
+            </tbody>
+        </table>
         <a class="btn btn-outline-primary" th:href="@{/furniture/add}"><i class="bi bi-plus-square"></i> Ajouter meuble</a>
         <a class="btn btn-outline-success" th:href="@{/cart}">Voir le panier</a>
     </main>
